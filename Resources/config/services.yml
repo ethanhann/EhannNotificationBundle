@@ -1,0 +1,11 @@
+parameters:
+    ehann.twig.notification_extension.class: Ehann\NotificationBundle\Twig\NotificationExtension
+    symfony.session.class: Ehann\NotificationBundle\Twig\NotificationExtension
+
+services:
+    ehann.twig.notification_extension:
+        class: %ehann.twig.notification_extension.class%
+        arguments:
+           misc_service: "@session"
+        tags:
+            -  { name: twig.extension }
