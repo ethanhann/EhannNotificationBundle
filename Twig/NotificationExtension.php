@@ -45,7 +45,8 @@ class NotificationExtension extends Twig_Extension
 
         foreach ($notificationTypes as $notificationType) {
             foreach ($this->session->getFlashBag()->get('ehann.notice.' . $notificationType, array()) as $message) {
-                $notifications .= sprintf("<div class='alert alert-%s'>$message</div>", $notificationType);
+                $escapedMessage = htmlspecialchars($message);
+                $notifications .= "<div class='alert alert-$notificationType'>$escapedMessage</div>";
             }
         }
 
