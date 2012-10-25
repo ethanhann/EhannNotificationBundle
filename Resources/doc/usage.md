@@ -14,7 +14,7 @@ Add Notifications in a Controller
    $session->getFlashBag()->add('ehann.notice.error', 'You broke something!');
 ```
 
-Show notification in a Twig template
+Show Notification in a Twig Template
 =
 
 Show all notifications...
