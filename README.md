@@ -1,7 +1,7 @@
 EhannNotification Symfony2 Bundle
 =
 
-Twitter Bootstrap-ready flash notification bundle for Symfony2
+Twitter Bootstrap-ready notification bundle for Symfony2.
 
 Usage documenation:
 ==
