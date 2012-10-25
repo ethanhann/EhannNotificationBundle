@@ -29,9 +29,9 @@ class NotificationExtension extends Twig_Extension
             'notification' => new Twig_Function_Method($this, 'notification'));
     }
 
-    public function notification($type = 'all')
+    public function notification($type = 'all', $showIcons = false)
     {
-        $notificationTypes = array('info', 'error', 'success');
+        $notificationTypes = array('info', 'error', 'warn', 'success');
 
         if (!in_array($type, $notificationTypes) && $type !== 'all') {
             throw new \Exception('Notification type does not exist.');
@@ -42,11 +42,26 @@ class NotificationExtension extends Twig_Extension
         }
 
         $notifications = '';
+        $icon = '';
+
+
+        $notificationIcons = array(
+            'info' => 'icon-info-sign',
+            'warn' => 'icon-warning-sign',
+            'error' => 'icon-fire',
+            'success' => 'icon-ok',
+        );
 
         foreach ($notificationTypes as $notificationType) {
             foreach ($this->session->getFlashBag()->get('ehann.notice.' . $notificationType, array()) as $message) {
                 $escapedMessage = htmlspecialchars($message);
-                $notifications .= "<div class='alert alert-$notificationType'>$escapedMessage</div>";
+
+                if ($showIcons) {
+                    $iconClass = $notificationIcons[$notificationType];
+                    $icon = "<i class='$iconClass'></i>";
+                }
+
+                $notifications .= "<div class='ehann-notification alert alert-$notificationType'>$icon<span> $escapedMessage</span></div>";
             }
         }
 
