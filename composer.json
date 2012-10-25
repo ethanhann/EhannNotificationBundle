@@ -1,5 +1,5 @@
 {
-    "name": "ehann/notification",
+    "name": "ehann/notification-bundle",
     "type": "symfony-bundle",
     "description": "Twitter Bootstrap-ready flash notification bundle for Symfony2",
     "keywords": ["notification", "message", "twitter", "bootstrap", "symfony2", "bundle", "ehann", "session"],
@@ -18,8 +18,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Ehann\\Bundle\\NotificationBundle": ""
+            "Ehann\\NotificationBundle": ""
         }
     },
-    "target-dir": "Ehann/Bundle/Notification"
+    "target-dir": "Ehann/NotificationBundle"
 }
