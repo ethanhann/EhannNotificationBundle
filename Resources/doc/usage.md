@@ -42,3 +42,14 @@ Show all notifications with icons...
 ```twig
 {{ notification('all', true)|raw }}
 ```
+
+Show notifications individually with icons...
+```twig
+{{ notification('success', true)|raw }}
+
+{{ notification('info', true)|raw }}
+
+{{ notification('warning', true)|raw }}
+
+{{ notification('error', true)|raw }}
+```
