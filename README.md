@@ -5,4 +5,4 @@ Twitter Bootstrap-ready flash notification bundle for Symfony2
 
 Usage documenation:
 ==
-https://github.com/ethanhann/EhannNotification/blob/master/Resources/doc/usage.md
+https://github.com/ethanhann/EhannNotificationBundle/blob/master/Resources/doc/usage.md
