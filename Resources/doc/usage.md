@@ -8,7 +8,7 @@ Add Notifications in a Controller
    $session->getFlashBag()->add('ehann.notice.success', 'Update successful!');
 
    // Add an informational notification
-   $session->getFlashBag()->add('ehann.notice.info', 'btw, you're awesome');
+   $session->getFlashBag()->add('ehann.notice.info', 'btw, you\'re awesome');
 
    // Add an error notification
    $session->getFlashBag()->add('ehann.notice.error', 'You broke something!');
