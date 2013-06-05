@@ -48,7 +48,7 @@ class NotificationExtension extends Twig_Extension
         $notificationIcons = array(
             'info' => 'icon-info-sign',
             'warn' => 'icon-warning-sign',
-            'error' => 'icon-fire',
+            'error' => 'icon-warning-sign',
             'success' => 'icon-ok',
         );
 
