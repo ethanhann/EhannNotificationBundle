@@ -26,6 +26,7 @@ $ php composer.phar update ehann/notification-bundle
 
 Add the EhannNotificationBundle to your AppKernel.php
 
+```php
 public function registerBundles()
 {
     $bundles = array(
@@ -35,7 +36,7 @@ public function registerBundles()
     );
     ...
 }
-
+```
 
 Usage Documentation
 ==
