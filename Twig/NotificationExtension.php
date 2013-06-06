@@ -26,10 +26,20 @@ class NotificationExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'notification' => new Twig_Function_Method($this, 'notification'));
+            'notification' => new Twig_Function_Method($this, 'notification')
+        );
     }
 
-    public function notification($type = 'all', $showIcons = false)
+    /**
+     * @param string $type      The type of notification to display: all|info|error|warn|success
+     * @param bool $showIcons Display icons before the notification's text.
+     * @param bool $repeat    Show the same message more than once.
+     *
+     * @return string HTML notification elements.
+     *
+     * @throws \Exception
+     */
+    public function notification($type = 'all', $showIcons = false, $repeat = true)
     {
         $notificationTypes = array('info', 'error', 'warn', 'success');
 
@@ -52,16 +62,29 @@ class NotificationExtension extends Twig_Extension
             'success' => 'icon-ok',
         );
 
+        // This is used to keep track of repeated messages, with regard to the "repeat" flag
+        $repeatedMessages = array(
+            'info' => array(),
+            'warn' => array(),
+            'error' => array(),
+            'success' => array(),
+        );
+
         foreach ($notificationTypes as $notificationType) {
-            foreach ($this->session->getFlashBag()->get('ehann.notice.' . $notificationType, array()) as $message) {
-                $escapedMessage = htmlspecialchars($message);
+            $messagesByType = $this->session->getFlashBag()->get('ehann.notice.' . $notificationType, array());
+            foreach ($messagesByType as $message) {
+                // Do not show duplicate messages if the "repeat" flag is false.
+                if ($repeat || !in_array($message, $repeatedMessages[$notificationType])) {
+                    $repeatedMessages[$notificationType][] = $message;
+                    $escapedMessage = htmlspecialchars($message);
 
-                if ($showIcons) {
-                    $iconClass = $notificationIcons[$notificationType];
-                    $icon = "<i class='$iconClass'></i>";
+                    if ($showIcons) {
+                        $iconClass = $notificationIcons[$notificationType];
+                        $icon = "<i class='$iconClass'></i>";
+                    }
+
+                    $notifications .= "<div class='ehann-notification alert alert-$notificationType'>$icon<span> $escapedMessage</span></div>";
                 }
-
-                $notifications .= "<div class='ehann-notification alert alert-$notificationType'>$icon<span> $escapedMessage</span></div>";
             }
         }
 
