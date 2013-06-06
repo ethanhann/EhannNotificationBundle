@@ -1,7 +1,37 @@
 EhannNotification Symfony2 Bundle
 =
 
+About
+==
 Twitter Bootstrap-ready notification bundle for Symfony2.
+
+Installation
+==
+
+Add EhannNotificationBundle in your composer.json:
+
+{
+    "require": {
+        "ehann/notification-bundle": "1.*"
+    }
+}
+
+Download bundle:
+
+$ php composer.phar update ehann/notification-bundle
+
+Add the EhannNotificationBundle to your AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        ...
+        new Ehann\NotificationBundle\NotificationBundleBundle(),
+        ...
+    );
+    ...
+}
+
 
 Usage Documentation
 ==
