@@ -65,7 +65,7 @@ class NotificationExtension extends Twig_Extension
         // This is used to keep track of repeated messages, with regard to the "repeat" flag
         $repeatedMessages = array(
             'info' => array(),
-            'warnings' => array(),
+            'warning' => array(),
             'error' => array(),
             'success' => array(),
         );
