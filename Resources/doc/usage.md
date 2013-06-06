@@ -22,9 +22,10 @@ Show Notification in a Twig Template
 =
 
 **The notification extension takes 3 arguments...**
-Message type: all|success|info|warning|error (default: all)
-Show icons: boolean (default: false)
-Repeat messages: boolean (default: true)
+
+1. Message type: all|success|info|warning|error (default: all)
+2. Show icons: boolean (default: false)
+3. Repeat messages: boolean (default: true)
 
 **Show all notifications...**
 
