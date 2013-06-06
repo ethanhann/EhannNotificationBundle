@@ -10,15 +10,19 @@ Installation
 
 Add EhannNotificationBundle in your composer.json:
 
+```js
 {
     "require": {
         "ehann/notification-bundle": "1.*"
     }
 }
+```
 
 Download bundle:
 
+``` bash
 $ php composer.phar update ehann/notification-bundle
+```
 
 Add the EhannNotificationBundle to your AppKernel.php
 
