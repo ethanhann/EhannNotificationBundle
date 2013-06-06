@@ -31,7 +31,7 @@ class NotificationExtension extends Twig_Extension
     }
 
     /**
-     * @param string $type      The type of notification to display: all|info|error|warn|success
+     * @param string $type    The type of notification to display: all|info|error|warning|success
      * @param bool $showIcons Display icons before the notification's text.
      * @param bool $repeat    Show the same message more than once.
      *
@@ -41,7 +41,7 @@ class NotificationExtension extends Twig_Extension
      */
     public function notification($type = 'all', $showIcons = false, $repeat = true)
     {
-        $notificationTypes = array('info', 'error', 'warn', 'success');
+        $notificationTypes = array('info', 'error', 'warning', 'success');
 
         if (!in_array($type, $notificationTypes) && $type !== 'all') {
             throw new \Exception('Notification type does not exist.');
@@ -57,7 +57,7 @@ class NotificationExtension extends Twig_Extension
 
         $notificationIcons = array(
             'info' => 'icon-info-sign',
-            'warn' => 'icon-warning-sign',
+            'warning' => 'icon-warning-sign',
             'error' => 'icon-warning-sign',
             'success' => 'icon-ok',
         );
@@ -65,7 +65,7 @@ class NotificationExtension extends Twig_Extension
         // This is used to keep track of repeated messages, with regard to the "repeat" flag
         $repeatedMessages = array(
             'info' => array(),
-            'warn' => array(),
+            'warnings' => array(),
             'error' => array(),
             'success' => array(),
         );

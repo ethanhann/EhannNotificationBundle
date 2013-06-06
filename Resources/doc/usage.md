@@ -1,5 +1,6 @@
 Add Notifications in a Controller
 =
+
 ```php
    // Get your session service
    $session = $this->get('session');
@@ -10,6 +11,9 @@ Add Notifications in a Controller
    // Add an informational notification
    $session->getFlashBag()->add('ehann.notice.info', 'btw, you\'re awesome');
 
+   // Add an warning notification
+   $session->getFlashBag()->add('ehann.notice.warning', 'Something might be wrong!');
+
    // Add an error notification
    $session->getFlashBag()->add('ehann.notice.error', 'You broke something!');
 ```
@@ -17,7 +21,12 @@ Add Notifications in a Controller
 Show Notification in a Twig Template
 =
 
-Show all notifications...
+**The notification extension takes 3 arguments...**
+Message type: all|success|info|warning|error (default: all)
+Show icons: boolean (default: false)
+Repeat messages: boolean (default: true)
+
+**Show all notifications...**
 
 ```twig
 {{ notification()|raw }}
@@ -27,7 +36,8 @@ or
 {{ notification('all')|raw }}
 ```
 
-Show notifications individually...
+**Show notifications individually...**
+
 ```twig
 {{ notification('success')|raw }}
 
@@ -38,12 +48,14 @@ Show notifications individually...
 {{ notification('error')|raw }}
 ```
 
-Show all notifications with icons...
+**Show all notifications with icons...**
+
 ```twig
 {{ notification('all', true)|raw }}
 ```
 
-Show notifications individually with icons...
+**Show notifications individually with icons...**
+
 ```twig
 {{ notification('success', true)|raw }}
 
@@ -52,4 +64,10 @@ Show notifications individually with icons...
 {{ notification('warning', true)|raw }}
 
 {{ notification('error', true)|raw }}
+```
+
+**Do not show duplicate messages...**
+
+```twig
+{{ notification('all', true, false)|raw }}
 ```
