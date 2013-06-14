@@ -1,8 +1,6 @@
-EhannNotification Symfony2 Bundle
+EhannNotificationBundle
 =
 
-About
-==
 Twitter Bootstrap-ready notification bundle for Symfony2.
 
 Installation
