@@ -13,7 +13,7 @@ Add EhannNotificationBundle in your composer.json:
 ```js
 {
     "require": {
-        "ehann/notification-bundle": "1.*"
+        "ehann/notification-bundle": "0.*"
     }
 }
 ```
