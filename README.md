@@ -3,6 +3,10 @@ EhannNotificationBundle
 
 Twitter Bootstrap-ready notification bundle for Symfony2.
 
+## Related Bundles
+
+<a href="https://github.com/ethanhann/EhannFrontendBundle">EhannFrontendBundle</a>
+
 Installation
 ==
 
