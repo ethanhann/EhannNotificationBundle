@@ -1,0 +1,15 @@
+{% extends 'EhannNotificationBundle:Alert:alert.html.twig' %}
+
+{% block alert %}
+    <div class="alert alert-danger">
+        {% block message %}
+            {% if icon %}
+                {% block icon %}
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                {% endblock %}
+            {% endif %}
+
+            {{ message }}
+        {% endblock %}
+    </div>
+{% endblock %}
