@@ -2,6 +2,7 @@
 
 namespace Ehann\NotificationBundle\Twig;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Twig_Extension;
 use Twig_Function_Method;
 
@@ -11,17 +12,33 @@ use Twig_Function_Method;
  */
 class NotificationExtension extends Twig_Extension
 {
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var \Twig_Environment
+     */
+    private $environment;
 
-    public function __construct($session)
+    /**
+     * @param Session $session
+     */
+    public function __construct(Session $session)
     {
         $this->session = $session;
     }
 
     /**
-     * Returns all the defined functions
-     *
-     * @return array An array of functions
+     * {@inheritDoc}
+     */
+    public function initRuntime(\Twig_Environment $environment)
+    {
+        $this->environment = $environment;
+    }
+
+    /**
+     * @return array
      */
     public function getFunctions()
     {
@@ -52,23 +69,9 @@ class NotificationExtension extends Twig_Extension
         }
 
         $notifications = '';
-        $icon = '';
-
-
-        $notificationIcons = array(
-            'info' => 'icon-info-sign',
-            'warning' => 'icon-warning-sign',
-            'error' => 'icon-warning-sign',
-            'success' => 'icon-ok',
-        );
 
         // This is used to keep track of repeated messages, with regard to the "repeat" flag
-        $repeatedMessages = array(
-            'info' => array(),
-            'warning' => array(),
-            'error' => array(),
-            'success' => array(),
-        );
+        $repeatedMessages = array_fill_keys($notificationTypes, []);
 
         foreach ($notificationTypes as $notificationType) {
             $messagesByType = $this->session->getFlashBag()->get('ehann.notice.' . $notificationType, array());
@@ -76,14 +79,12 @@ class NotificationExtension extends Twig_Extension
                 // Do not show duplicate messages if the "repeat" flag is false.
                 if ($repeat || !in_array($message, $repeatedMessages[$notificationType])) {
                     $repeatedMessages[$notificationType][] = $message;
-                    $escapedMessage = htmlspecialchars($message);
 
-                    if ($showIcons) {
-                        $iconClass = $notificationIcons[$notificationType];
-                        $icon = "<i class='$iconClass'></i>";
-                    }
-
-                    $notifications .= "<div class='ehann-notification alert alert-$notificationType'>$icon<span> $escapedMessage</span></div>";
+                    $notifications.= $this->environment->render(sprintf('EhannNotificationBundle:Alert:%s.html.twig', $notificationType), [
+                        'message' => $message,
+                        'icon' => $showIcons,
+                        'type' => $notificationType,
+                    ]);
                 }
             }
         }

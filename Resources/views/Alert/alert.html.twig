@@ -1,0 +1,13 @@
+{% block alert %}
+    <div class="alert alert-{{ type }}">
+        {% block message %}
+            {% if icon %}
+                {% block icon %}
+                    <span class="glyphicon glyphicon-{{ type }}-sign"></span>
+                {% endblock %}
+            {% endif %}
+
+            {{ message }}
+        {% endblock %}
+    </div>
+{% endblock %}
